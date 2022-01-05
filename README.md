@@ -5,7 +5,7 @@ This is an example code to demonstrate how to create [Python](https://www.python
 It's a simple API written in [Flask framework](https://flask.palletsprojects.com/en/1.1.x/) in Python and includes a test suite. 
 
 ### Local Setup
-
+-------------------------------------------
 1. Use `pip` to install the dependencies -
 
         pip install -r requirements.txt
