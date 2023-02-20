@@ -6,6 +6,11 @@ tasks:
     - checkout
     - commands: 
       - pip install -r requirements.txt
+      - pip install pytest-html
     - commands:
-      - python test.py
+      - python test.py --html=report.html
+      
+    - reports/html:
+        dir: coverage
+        
     - reports/junit: test-reports/*.xml
