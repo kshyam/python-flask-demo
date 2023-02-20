@@ -10,7 +10,11 @@ tasks:
     - commands:
       - python test.py
       
-    - reports/html:
-        dir: coverage
-
+    - reports/html: test-reports/*.html
     - reports/junit: test-reports/*.xml
+
+    - coverage run test.py
+    - coverage report && coverage html
+    - reports/junit: test-reports/*.xml
+    - reports/html: 
+      dir: htmlcov
