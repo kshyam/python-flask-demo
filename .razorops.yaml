@@ -1,20 +1,26 @@
-version: v2
+global:
+  runner:
+    os_image: ubuntu
 
 tasks:
-  build-and-test:
+  unit-tests:
+    runner: razorci/python:3.9
     steps:
     - checkout
+    - cache/pull: pip-deps-{{ checksum "requirements.txt" }}
     - commands: 
+      - python -c 'import site; print(site.getsitepackages())'
       - pip install -r requirements.txt
-      - pip install pytest-html
     - commands:
       - python test.py
-      
-    - reports/html: test-reports/*.html
-    - reports/junit: test-reports/*.xml
-
-    - coverage run test.py
-    - coverage report && coverage html
+      - export PATH="$(python3 -m site --user-base)/bin:$PATH"
+      # generate coverage reports
+      - coverage run test.py
+      - coverage report && coverage html
+    - cache/push:
+        key: pip-deps-{{ checksum "requirements.txt" }}
+        paths:
+        - /usr/local/lib/python3.9/site-packages
     - reports/junit: test-reports/*.xml
     - reports/html: 
-      dir: htmlcov
+        dir: htmlcov
