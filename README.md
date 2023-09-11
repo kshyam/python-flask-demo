@@ -1,5 +1,5 @@
 ## Razorops CI/CD pipeline demo with Python
-
+ 
 
 This is an example code to demonstrate how to create [Python](https://www.python.org/doc/) based pipeline on [Razorops](https://docs.razorops.com/).
 
